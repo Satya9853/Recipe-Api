@@ -44,9 +44,9 @@ app.use("/", (req, res, next) => {
 });
 
 // route middleware
-app.use("/api/v1/recipe", authRouter);
+app.use("/api/v1", authRouter);
 app.use(authMiddleware);
-app.use("/api/v1/recipe", recipeRouter);
+app.use("/api/v1", recipeRouter);
 
 // error middleware
 app.use(NotFoundMiddlware);

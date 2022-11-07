@@ -16,6 +16,7 @@ const app = express();
 //local import
 const ErrorHandlerMiddleware = require("./middlewares/Error-handler");
 const NotFoundMiddlware = require("./middlewares/Not-found");
+const authMiddleware = require("./middlewares/authentication");
 const recipeRouter = require("./routes/recipeRouter");
 const authRouter = require("./routes/authRouter");
 
@@ -24,6 +25,7 @@ app.use(bodyParser.json());
 
 // route middleware
 app.use("/api/v1/recipe", authRouter);
+app.use(authMiddleware);
 app.use("/api/v1/recipe", recipeRouter);
 
 // error middleware

@@ -9,10 +9,10 @@ router
   .post(recipeController.createRecipe)
   .get(recipeController.getAllRecipe);
 
-router.route("/user/:userId").get(recipeController.getAllUserRecipe);
+router.route("/user/recipe").get(recipeController.getAllUserRecipe);
 
 router
-  .route("/:reciepieId")
+  .route("/user/recipe/:recipeId")
   .get(recipeController.getRecipe)
   .patch(recipeController.updateRecipe)
   .delete(recipeController.deleteRecipe);

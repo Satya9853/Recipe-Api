@@ -34,16 +34,31 @@ exports.getAllRecipe = async (req, res, next) => {
 
 // get recipe by User_id
 exports.getAllUserRecipe = async (req, res, next) => {
-  console.log(req.user);
   const {
     user: { _id: userId },
-    params: { userId: params_userId },
+    query: { name, sort, fields },
   } = req;
 
-  if (userId != params_userId) {
-    throw new BadRequestError("Invalid User id");
-  }
-  const recipe = await recipeModel.find({ createdBy: userId });
+  let queryObject = {};
+
+  // search by userId
+  queryObject.createdBy = userId;
+
+  //  search object by name
+  if (name) queryObject.name = { $regex: name, $options: "i" };
+
+  //sort query
+  let sortQuery;
+  sortQuery = sort?.split(",").join(" ");
+
+  // fields select query
+  let fieldQuery;
+  fieldQuery = fields?.split(",").join(" ");
+
+  const recipe = await recipeModel
+    .find(queryObject)
+    .sort(sortQuery)
+    .select(fieldQuery);
   if (!recipe) {
     throw new NotFoundError(`No recipe found with userId ${userId}`);
   }
@@ -51,15 +66,63 @@ exports.getAllUserRecipe = async (req, res, next) => {
 };
 
 exports.getRecipe = async (req, res, next) => {
-  res.status(StatusCodes.OK).json({ message: "get Recipe Recipe" });
+  const {
+    user: { _id: userId },
+    params: { recipeId },
+  } = req;
+
+  const recipe = await recipeModel.findOne({
+    _id: recipeId,
+    createdBy: userId,
+  });
+
+  if (!recipe) {
+    throw new NotFoundError(`No Recipe with id ${recipeId}`);
+  }
+  res.status(StatusCodes.OK).json(recipe);
 };
 
 // update recipe by id
-exports.updateRecipe = (req, res, next) => {
-  res.status(StatusCodes.OK).json({ message: "update Recipe" });
+exports.updateRecipe = async (req, res, next) => {
+  const {
+    user: { _id: userId },
+    params: { recipeId },
+    body: { name, ingredients, steps },
+  } = req;
+  console.log(name);
+  if (name === "" || ingredients === "" || steps === "") {
+    throw new BadRequestError("Please Provide Valid name, ingredients, steps");
+  }
+
+  const recipe = await recipeModel.findByIdAndUpdate(
+    {
+      _id: recipeId,
+      createdBy: userId,
+    },
+    req.body,
+    { new: true, runValidators: true }
+  );
+
+  if (!recipe) {
+    throw new NotFoundError(`No Recipe with id ${recipeId}`);
+  }
+  res.status(StatusCodes.OK).json(recipe);
 };
 
 // delete recipe by id
-exports.deleteRecipe = (req, res, next) => {
-  res.status(StatusCodes.OK).json({ message: "delete Recipe" });
+exports.deleteRecipe = async (req, res, next) => {
+  const {
+    user: { _id: userId },
+    params: { recipeId },
+  } = req;
+
+  const recipe = await recipeModel.findOneAndRemove({
+    _id: recipeId,
+    createdBy: userId,
+  });
+
+  if (!recipe) {
+    throw new NotFoundError(`No Recipe with id ${recipeId}`);
+  }
+  res.status(StatusCodes.OK).json(recipe);
 };

@@ -1,0 +1,962 @@
+openapi: 3.0.0
+info:
+  title: Recipe API
+  description: An Rest Api Where You Can add and Search For Your Favourite Recipes.
+  contact: {}
+  version: "1.0"
+servers:
+  - url: https://recipe-api-8280.herokuapp.com/api/v1
+    variables: {}
+paths:
+  /:
+    get:
+      tags:
+        - RECIPE
+      summary: GET All Recipe
+      description: Get All Recipe's
+      operationId: GETAllRecipe
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          headers: {}
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - example:
+                      count: 1
+                      result:
+                        - _id: 636913157c89e8125dff1df1
+                          name: Crock Pot Roast
+                          ingredients:
+                            - quantity: "1"
+                              name: " beef roast"
+                              type: Meat
+                              _id: 636913157c89e8125dff1df2
+                            - quantity: 1 package
+                              name: brown gravy mix
+                              type: Baking
+                              _id: 636913157c89e8125dff1df3
+                            - quantity: 1 package
+                              name: dried Italian salad dressing mix
+                              type: Condiments
+                              _id: 636913157c89e8125dff1df4
+                            - quantity: 1 package
+                              name: dry ranch dressing mix
+                              type: Condiments
+                              _id: 636913157c89e8125dff1df5
+                            - quantity: 1/2 cup
+                              name: water
+                              type: Drinks
+                              _id: 636913157c89e8125dff1df6
+                          steps:
+                            - Place beef roast in crock pot.
+                            - Mix the dried mixes together in a bowl and sprinkle over the roast.
+                            - Pour the water around the roast.
+                            - Cook on low for 7-9 hours.
+                          timers:
+                            - 0
+                            - 0
+                            - 0
+                            - 420
+                          imageURL: http://img.sndimg.com/food/image/upload/w_266/v1/img/recipes/27/20/8/picVfzLZo.jpg
+                          originalURL: http://www.food.com/recipe/to-die-for-crock-pot-roast-27208
+                          __v: 0
+              example:
+                count: 1
+                result:
+                  - _id: 636913157c89e8125dff1df1
+                    name: Crock Pot Roast
+                    ingredients:
+                      - quantity: "1"
+                        name: " beef roast"
+                        type: Meat
+                        _id: 636913157c89e8125dff1df2
+                      - quantity: 1 package
+                        name: brown gravy mix
+                        type: Baking
+                        _id: 636913157c89e8125dff1df3
+                      - quantity: 1 package
+                        name: dried Italian salad dressing mix
+                        type: Condiments
+                        _id: 636913157c89e8125dff1df4
+                      - quantity: 1 package
+                        name: dry ranch dressing mix
+                        type: Condiments
+                        _id: 636913157c89e8125dff1df5
+                      - quantity: 1/2 cup
+                        name: water
+                        type: Drinks
+                        _id: 636913157c89e8125dff1df6
+                    steps:
+                      - Place beef roast in crock pot.
+                      - Mix the dried mixes together in a bowl and sprinkle over the roast.
+                      - Pour the water around the roast.
+                      - Cook on low for 7-9 hours.
+                    timers:
+                      - 0
+                      - 0
+                      - 0
+                      - 420
+                    imageURL: http://img.sndimg.com/food/image/upload/w_266/v1/img/recipes/27/20/8/picVfzLZo.jpg
+                    originalURL: http://www.food.com/recipe/to-die-for-crock-pot-roast-27208
+                    __v: 0
+      deprecated: false
+      security:
+        - bearer: []
+      servers:
+        - url: https://recipe-api-8280.herokuapp.com/api/v1
+          variables: {}
+    post:
+      tags:
+        - RECIPE
+      summary: Create Recipe
+      description: Create a new Recipe
+      operationId: CreateRecipe
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/CreateRecipeRequest"
+                - example:
+                    name: example
+                    ingredients:
+                      - quantity: "1"
+                        name: " beef roast"
+                        type: Meat
+                      - quantity: 1 package
+                        name: brown gravy mix
+                        type: Baking
+                      - quantity: 1 package
+                        name: dried Italian salad dressing mix
+                        type: Condiments
+                      - quantity: 1 package
+                        name: dry ranch dressing mix
+                        type: Condiments
+                      - quantity: 1/2 cup
+                        name: water
+                        type: Drinks
+                    steps:
+                      - Place beef roast in crock pot.
+                      - Mix the dried mixes together in a bowl and sprinkle over the roast.
+                      - Pour the water around the roast.
+                      - Cook on low for 7-9 hours.
+                    timers:
+                      - 0
+                      - 0
+                      - 0
+                      - 420
+                    imageURL: http://img.sndimg.com/food/image/upload/w_266/v1/img/recipes/27/20/8/picVfzLZo.jpg
+                    originalURL: http://www.food.com/recipe/to-die-for-crock-pot-roast-27208
+            example:
+              name: example
+              ingredients:
+                - quantity: "1"
+                  name: " beef roast"
+                  type: Meat
+                - quantity: 1 package
+                  name: brown gravy mix
+                  type: Baking
+                - quantity: 1 package
+                  name: dried Italian salad dressing mix
+                  type: Condiments
+                - quantity: 1 package
+                  name: dry ranch dressing mix
+                  type: Condiments
+                - quantity: 1/2 cup
+                  name: water
+                  type: Drinks
+              steps:
+                - Place beef roast in crock pot.
+                - Mix the dried mixes together in a bowl and sprinkle over the roast.
+                - Pour the water around the roast.
+                - Cook on low for 7-9 hours.
+              timers:
+                - 0
+                - 0
+                - 0
+                - 420
+              imageURL: http://img.sndimg.com/food/image/upload/w_266/v1/img/recipes/27/20/8/picVfzLZo.jpg
+              originalURL: http://www.food.com/recipe/to-die-for-crock-pot-roast-27208
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - example:
+                      name: example
+                      ingredients:
+                        - quantity: "1"
+                          name: " beef roast"
+                          type: Meat
+                        - quantity: 1 package
+                          name: brown gravy mix
+                          type: Baking
+                        - quantity: 1 package
+                          name: dried Italian salad dressing mix
+                          type: Condiments
+                        - quantity: 1 package
+                          name: dry ranch dressing mix
+                          type: Condiments
+                        - quantity: 1/2 cup
+                          name: water
+                          type: Drinks
+                      steps:
+                        - Place beef roast in crock pot.
+                        - Mix the dried mixes together in a bowl and sprinkle over the roast.
+                        - Pour the water around the roast.
+                        - Cook on low for 7-9 hours.
+                      timers:
+                        - 0
+                        - 0
+                        - 0
+                        - 420
+                      imageURL: http://img.sndimg.com/food/image/upload/w_266/v1/img/recipes/27/20/8/picVfzLZo.jpg
+                      originalURL: http://www.food.com/recipe/to-die-for-crock-pot-roast-27208
+              example:
+                name: example
+                ingredients:
+                  - quantity: "1"
+                    name: " beef roast"
+                    type: Meat
+                  - quantity: 1 package
+                    name: brown gravy mix
+                    type: Baking
+                  - quantity: 1 package
+                    name: dried Italian salad dressing mix
+                    type: Condiments
+                  - quantity: 1 package
+                    name: dry ranch dressing mix
+                    type: Condiments
+                  - quantity: 1/2 cup
+                    name: water
+                    type: Drinks
+                steps:
+                  - Place beef roast in crock pot.
+                  - Mix the dried mixes together in a bowl and sprinkle over the roast.
+                  - Pour the water around the roast.
+                  - Cook on low for 7-9 hours.
+                timers:
+                  - 0
+                  - 0
+                  - 0
+                  - 420
+                imageURL: http://img.sndimg.com/food/image/upload/w_266/v1/img/recipes/27/20/8/picVfzLZo.jpg
+                originalURL: http://www.food.com/recipe/to-die-for-crock-pot-roast-27208
+      deprecated: false
+      security:
+        - bearer: []
+      servers:
+        - url: https://recipe-api-8280.herokuapp.com/api/v1
+          variables: {}
+  /user/recipe:
+    get:
+      tags:
+        - RECIPE
+      summary: GET All User Recipe
+      description: Get All Recipe's created by the user.
+      operationId: GETAllUserRecipe
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          headers: {}
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - example:
+                      recipe:
+                        - _id: 63695bd463362b7fb6dfa69c
+                          name: example
+                          ingredients:
+                            - quantity: "1"
+                              name: " beef roast"
+                              type: Meat
+                              _id: 63695bd463362b7fb6dfa69d
+                            - quantity: 1 package
+                              name: brown gravy mix
+                              type: Baking
+                              _id: 63695bd463362b7fb6dfa69e
+                            - quantity: 1 package
+                              name: dried Italian salad dressing mix
+                              type: Condiments
+                              _id: 63695bd463362b7fb6dfa69f
+                            - quantity: 1 package
+                              name: dry ranch dressing mix
+                              type: Condiments
+                              _id: 63695bd463362b7fb6dfa6a0
+                            - quantity: 1/2 cup
+                              name: water
+                              type: Drinks
+                              _id: 63695bd463362b7fb6dfa6a1
+                          steps:
+                            - Place beef roast in crock pot.
+                            - Mix the dried mixes together in a bowl and sprinkle over the roast.
+                            - Pour the water around the roast.
+                            - Cook on low for 7-9 hours.
+                          timers:
+                            - 0
+                            - 0
+                            - 0
+                            - 420
+                          imageURL: http://img.sndimg.com/food/image/upload/w_266/v1/img/recipes/27/20/8/picVfzLZo.jpg
+                          originalURL: http://www.food.com/recipe/to-die-for-crock-pot-roast-27208
+                          createdBy: 6368b36f722c9ec5a6b8d852
+                          __v: 0
+              example:
+                recipe:
+                  - _id: 63695bd463362b7fb6dfa69c
+                    name: example
+                    ingredients:
+                      - quantity: "1"
+                        name: " beef roast"
+                        type: Meat
+                        _id: 63695bd463362b7fb6dfa69d
+                      - quantity: 1 package
+                        name: brown gravy mix
+                        type: Baking
+                        _id: 63695bd463362b7fb6dfa69e
+                      - quantity: 1 package
+                        name: dried Italian salad dressing mix
+                        type: Condiments
+                        _id: 63695bd463362b7fb6dfa69f
+                      - quantity: 1 package
+                        name: dry ranch dressing mix
+                        type: Condiments
+                        _id: 63695bd463362b7fb6dfa6a0
+                      - quantity: 1/2 cup
+                        name: water
+                        type: Drinks
+                        _id: 63695bd463362b7fb6dfa6a1
+                    steps:
+                      - Place beef roast in crock pot.
+                      - Mix the dried mixes together in a bowl and sprinkle over the roast.
+                      - Pour the water around the roast.
+                      - Cook on low for 7-9 hours.
+                    timers:
+                      - 0
+                      - 0
+                      - 0
+                      - 420
+                    imageURL: http://img.sndimg.com/food/image/upload/w_266/v1/img/recipes/27/20/8/picVfzLZo.jpg
+                    originalURL: http://www.food.com/recipe/to-die-for-crock-pot-roast-27208
+                    createdBy: 6368b36f722c9ec5a6b8d852
+                    __v: 0
+      deprecated: false
+      security:
+        - bearer: []
+      servers:
+        - url: https://recipe-api-8280.herokuapp.com/api/v1
+          variables: {}
+  /user/recipe/{id}:
+    get:
+      tags:
+        - RECIPE
+      summary: Get Recipe
+      description: Search for a particular recipe
+      operationId: GetRecipe
+      parameters:
+        - name: id
+          in: path
+          description: Provide the recipe id
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: 6368bd900635c368224f95f9ff
+      responses:
+        "200":
+          description: ""
+          headers: {}
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - example:
+                      name: example
+                      ingredients:
+                        - quantity: "1"
+                          name: " beef roast"
+                          type: Meat
+                        - quantity: 1 package
+                          name: brown gravy mix
+                          type: Baking
+                        - quantity: 1 package
+                          name: dried Italian salad dressing mix
+                          type: Condiments
+                        - quantity: 1 package
+                          name: dry ranch dressing mix
+                          type: Condiments
+                        - quantity: 1/2 cup
+                          name: water
+                          type: Drinks
+                      steps:
+                        - Place beef roast in crock pot.
+                        - Mix the dried mixes together in a bowl and sprinkle over the roast.
+                        - Pour the water around the roast.
+                        - Cook on low for 7-9 hours.
+                      timers:
+                        - 0
+                        - 0
+                        - 0
+                        - 420
+                      imageURL: http://img.sndimg.com/food/image/upload/w_266/v1/img/recipes/27/20/8/picVfzLZo.jpg
+                      originalURL: http://www.food.com/recipe/to-die-for-crock-pot-roast-27208
+              example:
+                name: example
+                ingredients:
+                  - quantity: "1"
+                    name: " beef roast"
+                    type: Meat
+                  - quantity: 1 package
+                    name: brown gravy mix
+                    type: Baking
+                  - quantity: 1 package
+                    name: dried Italian salad dressing mix
+                    type: Condiments
+                  - quantity: 1 package
+                    name: dry ranch dressing mix
+                    type: Condiments
+                  - quantity: 1/2 cup
+                    name: water
+                    type: Drinks
+                steps:
+                  - Place beef roast in crock pot.
+                  - Mix the dried mixes together in a bowl and sprinkle over the roast.
+                  - Pour the water around the roast.
+                  - Cook on low for 7-9 hours.
+                timers:
+                  - 0
+                  - 0
+                  - 0
+                  - 420
+                imageURL: http://img.sndimg.com/food/image/upload/w_266/v1/img/recipes/27/20/8/picVfzLZo.jpg
+                originalURL: http://www.food.com/recipe/to-die-for-crock-pot-roast-27208
+      deprecated: false
+      security:
+        - bearer: []
+      servers:
+        - url: https://recipe-api-8280.herokuapp.com/api/v1
+          variables: {}
+    patch:
+      tags:
+        - RECIPE
+      summary: Update Recipe
+      description: Update the recipe
+      operationId: UpdateRecipe
+      parameters:
+        - name: id
+          in: path
+          description: Recipe Id
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: 6368bd900635c368224f95f9ff
+      requestBody:
+        description: provide valid data to create a new recipe.
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/UpdateRecipeRequest"
+                - description: provide valid data to create a new recipe.
+                  example:
+                    name: example
+                    ingredients:
+                      - quantity: "1"
+                        name: " beef roast"
+                        type: Meat
+                      - quantity: 1 package
+                        name: brown gravy mix
+                        type: Baking
+                      - quantity: 1 package
+                        name: dried Italian salad dressing mix
+                        type: Condiments
+                      - quantity: 1 package
+                        name: dry ranch dressing mix
+                        type: Condiments
+                      - quantity: 1/2 cup
+                        name: water
+                        type: Drinks
+                    steps:
+                      - Place beef roast in crock pot.
+                      - Mix the dried mixes together in a bowl and sprinkle over the roast.
+                      - Pour the water around the roast.
+                      - Cook on low for 7-9 hours.
+                    timers:
+                      - 0
+                      - 0
+                      - 0
+                      - 420
+                    imageURL: http://img.sndimg.com/food/image/upload/w_266/v1/img/recipes/27/20/8/picVfzLZo.jpg
+                    originalURL: http://www.food.com/recipe/to-die-for-crock-pot-roast-27208
+            example:
+              name: example
+              ingredients:
+                - quantity: "1"
+                  name: " beef roast"
+                  type: Meat
+                - quantity: 1 package
+                  name: brown gravy mix
+                  type: Baking
+                - quantity: 1 package
+                  name: dried Italian salad dressing mix
+                  type: Condiments
+                - quantity: 1 package
+                  name: dry ranch dressing mix
+                  type: Condiments
+                - quantity: 1/2 cup
+                  name: water
+                  type: Drinks
+              steps:
+                - Place beef roast in crock pot.
+                - Mix the dried mixes together in a bowl and sprinkle over the roast.
+                - Pour the water around the roast.
+                - Cook on low for 7-9 hours.
+              timers:
+                - 0
+                - 0
+                - 0
+                - 420
+              imageURL: http://img.sndimg.com/food/image/upload/w_266/v1/img/recipes/27/20/8/picVfzLZo.jpg
+              originalURL: http://www.food.com/recipe/to-die-for-crock-pot-roast-27208
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - example:
+                      name: example
+                      ingredients:
+                        - quantity: "1"
+                          name: " beef roast"
+                          type: Meat
+                        - quantity: 1 package
+                          name: brown gravy mix
+                          type: Baking
+                        - quantity: 1 package
+                          name: dried Italian salad dressing mix
+                          type: Condiments
+                        - quantity: 1 package
+                          name: dry ranch dressing mix
+                          type: Condiments
+                        - quantity: 1/2 cup
+                          name: water
+                          type: Drinks
+                      steps:
+                        - Place beef roast in crock pot.
+                        - Mix the dried mixes together in a bowl and sprinkle over the roast.
+                        - Pour the water around the roast.
+                        - Cook on low for 7-9 hours.
+                      timers:
+                        - 0
+                        - 0
+                        - 0
+                        - 420
+                      imageURL: http://img.sndimg.com/food/image/upload/w_266/v1/img/recipes/27/20/8/picVfzLZo.jpg
+                      originalURL: http://www.food.com/recipe/to-die-for-crock-pot-roast-27208
+              example:
+                name: example
+                ingredients:
+                  - quantity: "1"
+                    name: " beef roast"
+                    type: Meat
+                  - quantity: 1 package
+                    name: brown gravy mix
+                    type: Baking
+                  - quantity: 1 package
+                    name: dried Italian salad dressing mix
+                    type: Condiments
+                  - quantity: 1 package
+                    name: dry ranch dressing mix
+                    type: Condiments
+                  - quantity: 1/2 cup
+                    name: water
+                    type: Drinks
+                steps:
+                  - Place beef roast in crock pot.
+                  - Mix the dried mixes together in a bowl and sprinkle over the roast.
+                  - Pour the water around the roast.
+                  - Cook on low for 7-9 hours.
+                timers:
+                  - 0
+                  - 0
+                  - 0
+                  - 420
+                imageURL: http://img.sndimg.com/food/image/upload/w_266/v1/img/recipes/27/20/8/picVfzLZo.jpg
+                originalURL: http://www.food.com/recipe/to-die-for-crock-pot-roast-27208
+      deprecated: false
+      security:
+        - bearer: []
+      servers:
+        - url: https://recipe-api-8280.herokuapp.com/api/v1
+          variables: {}
+    delete:
+      tags:
+        - RECIPE
+      summary: Delete Recipe
+      description: Delete a user created recipe
+      operationId: DeleteRecipe
+      parameters:
+        - name: id
+          in: path
+          description: ""
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: 6368bd900635c368224f95f9ff
+      responses:
+        "200":
+          description: ""
+          headers: {}
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - example:
+                      name: example
+                      ingredients:
+                        - quantity: "1"
+                          name: " beef roast"
+                          type: Meat
+                        - quantity: 1 package
+                          name: brown gravy mix
+                          type: Baking
+                        - quantity: 1 package
+                          name: dried Italian salad dressing mix
+                          type: Condiments
+                        - quantity: 1 package
+                          name: dry ranch dressing mix
+                          type: Condiments
+                        - quantity: 1/2 cup
+                          name: water
+                          type: Drinks
+                      steps:
+                        - Place beef roast in crock pot.
+                        - Mix the dried mixes together in a bowl and sprinkle over the roast.
+                        - Pour the water around the roast.
+                        - Cook on low for 7-9 hours.
+                      timers:
+                        - 0
+                        - 0
+                        - 0
+                        - 420
+                      imageURL: http://img.sndimg.com/food/image/upload/w_266/v1/img/recipes/27/20/8/picVfzLZo.jpg
+                      originalURL: http://www.food.com/recipe/to-die-for-crock-pot-roast-27208
+              example:
+                name: example
+                ingredients:
+                  - quantity: "1"
+                    name: " beef roast"
+                    type: Meat
+                  - quantity: 1 package
+                    name: brown gravy mix
+                    type: Baking
+                  - quantity: 1 package
+                    name: dried Italian salad dressing mix
+                    type: Condiments
+                  - quantity: 1 package
+                    name: dry ranch dressing mix
+                    type: Condiments
+                  - quantity: 1/2 cup
+                    name: water
+                    type: Drinks
+                steps:
+                  - Place beef roast in crock pot.
+                  - Mix the dried mixes together in a bowl and sprinkle over the roast.
+                  - Pour the water around the roast.
+                  - Cook on low for 7-9 hours.
+                timers:
+                  - 0
+                  - 0
+                  - 0
+                  - 420
+                imageURL: http://img.sndimg.com/food/image/upload/w_266/v1/img/recipes/27/20/8/picVfzLZo.jpg
+                originalURL: http://www.food.com/recipe/to-die-for-crock-pot-roast-27208
+      deprecated: false
+      security:
+        - bearer: []
+      servers:
+        - url: https://recipe-api-8280.herokuapp.com/api/v1
+          variables: {}
+  /register:
+    post:
+      tags:
+        - AUTH
+      summary: Register User
+      description: Create New User
+      operationId: RegisterUser
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/CreateUserRequest"
+                - example:
+                    name: abcdef
+                    email: abcdef@xmail.com
+                    password: abcdef
+            example:
+              name: abcdef
+              email: abcdef@xmail.com
+              password: abcdef
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/CreateUserRequest"
+                  - {}
+      deprecated: false
+      servers:
+        - url: https://recipe-api-8280.herokuapp.com/api/v1
+          variables: {}
+  /login:
+    post:
+      tags:
+        - AUTH
+      summary: Login User
+      description: User Log In
+      operationId: LoginUser
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/LoginUserRequest"
+                - example:
+                    email: abdef@xmail.com
+                    password: abc1234
+            example:
+              email: abdef@xmail.com
+              password: abc1234
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/LoginUserRequest"
+                  - {}
+      deprecated: false
+      security:
+        - bearer: []
+      servers:
+        - url: https://recipe-api-8280.herokuapp.com/api/v1
+          variables: {}
+components:
+  schemas:
+    CreateRecipeRequest:
+      title: CreateRecipeRequest
+      required:
+        - name
+        - ingredients
+        - steps
+        - timers
+        - imageURL
+        - originalURL
+      type: object
+      properties:
+        name:
+          type: string
+        ingredients:
+          type: array
+          items:
+            $ref: "#/components/schemas/Ingredient"
+          description: ""
+        steps:
+          type: array
+          items:
+            type: string
+          description: ""
+        timers:
+          type: array
+          items:
+            type: integer
+            format: int32
+          description: ""
+        imageURL:
+          type: string
+        originalURL:
+          type: string
+      example:
+        name: example
+        ingredients:
+          - quantity: "1"
+            name: " beef roast"
+            type: Meat
+          - quantity: 1 package
+            name: brown gravy mix
+            type: Baking
+          - quantity: 1 package
+            name: dried Italian salad dressing mix
+            type: Condiments
+          - quantity: 1 package
+            name: dry ranch dressing mix
+            type: Condiments
+          - quantity: 1/2 cup
+            name: water
+            type: Drinks
+        steps:
+          - Place beef roast in crock pot.
+          - Mix the dried mixes together in a bowl and sprinkle over the roast.
+          - Pour the water around the roast.
+          - Cook on low for 7-9 hours.
+        timers:
+          - 0
+          - 0
+          - 0
+          - 420
+        imageURL: http://img.sndimg.com/food/image/upload/w_266/v1/img/recipes/27/20/8/picVfzLZo.jpg
+        originalURL: http://www.food.com/recipe/to-die-for-crock-pot-roast-27208
+    Ingredient:
+      title: Ingredient
+      required:
+        - quantity
+        - name
+        - type
+      type: object
+      properties:
+        quantity:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+      example:
+        quantity: "1"
+        name: " beef roast"
+        type: Meat
+    UpdateRecipeRequest:
+      title: UpdateRecipeRequest
+      required:
+        - name
+        - ingredients
+        - steps
+        - timers
+        - imageURL
+        - originalURL
+      type: object
+      properties:
+        name:
+          type: string
+        ingredients:
+          type: array
+          items:
+            $ref: "#/components/schemas/Ingredient"
+          description: ""
+        steps:
+          type: array
+          items:
+            type: string
+          description: ""
+        timers:
+          type: array
+          items:
+            type: integer
+            format: int32
+          description: ""
+        imageURL:
+          type: string
+        originalURL:
+          type: string
+      example:
+        name: example
+        ingredients:
+          - quantity: "1"
+            name: " beef roast"
+            type: Meat
+          - quantity: 1 package
+            name: brown gravy mix
+            type: Baking
+          - quantity: 1 package
+            name: dried Italian salad dressing mix
+            type: Condiments
+          - quantity: 1 package
+            name: dry ranch dressing mix
+            type: Condiments
+          - quantity: 1/2 cup
+            name: water
+            type: Drinks
+        steps:
+          - Place beef roast in crock pot.
+          - Mix the dried mixes together in a bowl and sprinkle over the roast.
+          - Pour the water around the roast.
+          - Cook on low for 7-9 hours.
+        timers:
+          - 0
+          - 0
+          - 0
+          - 420
+        imageURL: http://img.sndimg.com/food/image/upload/w_266/v1/img/recipes/27/20/8/picVfzLZo.jpg
+        originalURL: http://www.food.com/recipe/to-die-for-crock-pot-roast-27208
+    CreateUserRequest:
+      title: CreateUserRequest
+      required:
+        - name
+        - email
+        - password
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        user:
+          name: abcde
+        token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzY5MmE0NmE1NmNhNzY1OTVhNDIyNmEiLCJpYXQiOjE2Njc4MzY0ODYsImV4cCI6MTY2ODQ0MTI4Nn0.Di3JDpGXTAtelExzEnWBc7GUj0FyRN8ma7ipQwZ-TRo
+
+    LoginUserRequest:
+      title: LoginUserRequest
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        user:
+          name: abcde
+        token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzY5MmE0NmE1NmNhNzY1OTVhNDIyNmEiLCJpYXQiOjE2Njc4MzY0ODYsImV4cCI6MTY2ODQ0MTI4Nn0.Di3JDpGXTAtelExzEnWBc7GUj0FyRN8ma7ipQwZ-TRo
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+security: []
+tags:
+  - name: AUTH
+    description: ""
+  - name: RECIPE
+    description: ""

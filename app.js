@@ -42,13 +42,13 @@ app.use(cors());
 app.use(xss());
 
 // swagger
-const swaggerdocument = YAML.load("./swagger.yaml");
+const swaggerDocument = YAML.load("./swagger.yaml");
 
 //swagger document route
 app.get("/", (req, res, next) => {
   res.send("<h1>Recipe Api</h1> <a href='/api-docs'>api docs</a>");
 });
-app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerdocument));
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
 // route middleware
 app.use("/api/v1", authRouter);

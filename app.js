@@ -38,9 +38,8 @@ app.use(cors());
 app.use(xss());
 
 //Test Route
-app.use("/", (req, res, next) => {
+app.get("/", (req, res, next) => {
   res.send("Recipe Api");
-  next();
 });
 
 // route middleware

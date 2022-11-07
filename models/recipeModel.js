@@ -30,6 +30,18 @@ const recipeSchema = new mongoose.Schema(
         required: [true, "please provide steps"],
       },
     ],
+    timers: [
+      {
+        type: Number,
+      },
+    ],
+    imageURL: {
+      type: String,
+      required: [true, "Please Provide Image Url"],
+    },
+    originalURL: {
+      type: String,
+    },
     createdBy: {
       type: mongoose.Types.ObjectId,
       ref: "User",

@@ -24,7 +24,6 @@ exports.getAllRecipe = async (req, res, next) => {
   //fields select query
   let fieldQuery;
   fieldQuery = fields?.split(",").join(" ");
-  console.log(fieldQuery);
   const data = await recipeModel
     .find(queryObject)
     .sort(sortQuery)
@@ -89,7 +88,6 @@ exports.updateRecipe = async (req, res, next) => {
     params: { recipeId },
     body: { name, ingredients, steps },
   } = req;
-  console.log(name);
   if (name === "" || ingredients === "" || steps === "") {
     throw new BadRequestError("Please Provide Valid name, ingredients, steps");
   }

@@ -10,6 +10,10 @@ const connectDB = require("./db/connect");
 // packege require
 const express = require("express");
 const bodyParser = require("body-parser");
+const helmet = require("helmet");
+const cors = require("cors");
+const xss = require("xss-clean");
+const rateLimit = require("express-rate-limit");
 
 const app = express();
 
@@ -21,7 +25,23 @@ const recipeRouter = require("./routes/recipeRouter");
 const authRouter = require("./routes/authRouter");
 
 // required middleware
+app.set("trust proxy", 1);
+app.use(
+  rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100,
+  })
+);
 app.use(bodyParser.json());
+app.use(helmet());
+app.use(cors());
+app.use(xss());
+
+//Test Route
+app.use("/", (req, res, next) => {
+  res.send("Recipe Api");
+  next();
+});
 
 // route middleware
 app.use("/api/v1/recipe", authRouter);

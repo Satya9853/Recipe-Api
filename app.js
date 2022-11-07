@@ -14,6 +14,8 @@ const helmet = require("helmet");
 const cors = require("cors");
 const xss = require("xss-clean");
 const rateLimit = require("express-rate-limit");
+const swaggerUI = require("swagger-ui-express");
+const YAML = require("yamljs");
 
 const app = express();
 
@@ -33,14 +35,20 @@ app.use(
   })
 );
 app.use(bodyParser.json());
+
+// security package
 app.use(helmet());
 app.use(cors());
 app.use(xss());
 
-//Test Route
+// swagger
+const swaggerdocument = YAML.load("./swagger.yaml");
+
+//swagger document route
 app.get("/", (req, res, next) => {
-  res.send("Recipe Api");
+  res.send("<h1>Recipe Api</h1> <a href='/api-docs'>api docs</a>");
 });
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerdocument));
 
 // route middleware
 app.use("/api/v1", authRouter);
